@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Anh yêu em vcl</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffe4e1;
+            color: #ff1493;
+            text-align: center;
+            overflow: hidden;
+        }
+        #question, #message {
+            font-size: 1.5em;
+            padding: 20px;
+            border: 2px solid #ff1493;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #ff69b4;
+            border: none;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #ff1493;
+        }
+       .heart {
+    position: absolute;
+    font-size: 24px;
+    color: #ff1493;
+    animation: floatUp 5s ease-in-out infinite;
+    opacity: 0.8;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-200px);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-400px);
+        opacity: 0;
+    }
+}
+
+        }
+    </style>
+</head>
+<body>
+    <div id="question">Em có yêu anh không?</div>
+    <div id="options">
+        <button onclick="answerYes()">Có</button>
+        <button onclick="answerNo()">Không</button>
+    </div>
+    <div id="message" style="display: none;">Sau đây là vài lời Minh nhắn nhủ đến Thắm!</div>
+   <button id="loveButton" style="display: none;" onclick="changeButtonText()">Anh không hack em đâu mà sợ</button>
+
+
+    <script>
+        function answerYes() {
+            document.getElementById("question").style.display = "none";
+            document.getElementById("options").style.display = "none";
+            document.getElementById("message").style.display = "block";
+            document.getElementById("loveButton").style.display = "block";
+        }
+
+        function answerNo() {
+            alert("Em chọn sai rồi, chọn lại 'Có' đi!");
+        }
+	function changeButtonText() {
+        const randomIndex = Math.floor(Math.random() * buttonTexts.length);
+        document.getElementById("loveButton").innerText = buttonTexts[randomIndex];
+        createHearts();
+	showMessage()    }
+
+        const messages = [
+            "Người yêu sớm khỏe lại ạ",
+            "Iu Thắm rấc nhiềuuu",
+            "Nhớ uống đủ nước và ăn đủ bữaaa",
+            "Khỏe lại dồi mình đi chơi cùng nhauu",
+            "Muốn ôm em zl =))."
+        ];
+	const buttonTexts = [
+        "Tiếp tục ấn đi",
+        "Chưa hết đâu",
+        "Đừng dừng lại",
+        "Còn nữa đấy",
+           ];
+        function showMessage() {
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            document.getElementById("message").innerText = messages[randomIndex];
+            createHearts();
+        }
+
+       function createHearts() {
+    for (let i = 0; i < 10; i++) {  // Tạo 10 trái tim
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerText = '❤️💞💓❤️‍🔥';
+        document.body.appendChild(heart);
+
+        // Randomize starting position
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.top = Math.random() * 100 + 'vh';
+
+        // Randomize size and animation duration
+        heart.style.fontSize = Math.random() * 20 + 20 + 'px';  // Kích thước từ 20px đến 40px
+        heart.style.animationDuration = (Math.random() * 2 + 4) + 's';  // Thời gian từ 4s đến 6s
+
+        // Remove the heart after animation ends
+        setTimeout(() => {
+            heart.remove();
+        }, 6000);
+    }
+        }
+    </script>
+</body>
+</html>
